@@ -1,0 +1,1 @@
+https://github.com/matthieua/WOW/blob/master/src/wow.coffee

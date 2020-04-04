@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AOS Animation on scroll</title>
+	<link rel="stylesheet" href="aos-next/dist/aos.css">
+	<!-- v2.3.4 bugged, no aos:in/aos:out event -->
+	<!--<script src="node_modules/aos/dist/aos.js"></script>-->
+	
+	<!-- @v3.0.6beta good, aos:in/aos:out events work -->
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+	<!--<script src="./aos-next/src/js/aos.js"></script>-->
+	<style>
+		.box { width: 200px; height: 200px; display: inline-block; }
+		.red { background: red; }
+		.pink { background-color: #aa00ff; }
+		.blue { background-color: #34a0ff; }
+		* { margin: 0; padding: 0; }
+		.container { width: 1170px; margin: 0 auto; text-align: center; }
+		body { margin-top: 100px; padding-bottom: 60px; }
+		.row { margin-top: 400px; }
+		h1 { margin-bottom: 50px; line-height: 46px; }
+	</style>
+</head>
+<body>
+	<script>
+		AOS.init({
+			//startEvent: 'load',
+			once: false,
+			duration: 1200
+		});
+		
+		document.addEventListener('scroll', ({ detail }) => {
+			//console.log('Event: scroll. Animated in ' + detail);
+			//console.log('animated in', detail);
+			//alert('animated in ' + detail);
+		});
+
+		/*document.addEventListener('aos:in', ({ detail }) => {
+			console.dir(detail);
+		});*/
+
+		/*document.addEventListener('DOMContentLoaded', function() {
+			document.addEventListener('aos:in', ({ detail }) => {
+				console.log('Event: aos:in. Animated in ' + detail);
+				//alert('animated in ' + detail);
+			});
+
+			document.addEventListener('aos:out', ({ detail }) => {
+				console.log('Event: aos:out. Animated in ' + detail);
+				//alert('animated in ' + detail);
+			});
+		});*/
+
+		document.addEventListener('aos:in', ({ detail }) => {
+			//console.log('1x Event: aos:in. Animated in ' + detail);
+			console.log('Event: aos:in');
+			;console.log(detail);
+			//alert('animated in ' + detail);
+		});
+
+		document.addEventListener('aos:out', ({ detail }) => {
+			//console.log('1y Event: aos:out. Animated in ' + detail);
+			console.log('Event: aos:out');
+			console.log(detail);
+			//alert('animated in ' + detail);
+		});
+
+		/*setTimeout(() => { 
+			//alert('Hi!');
+			// turn off AOS
+			//AOS.init({ disable: true }); AOS.refresh() },
+			AOS.refresh(false) },
+		3000);*/
+	</script>
+	<div class="container">
+		<h1>
+			<a href="https://www.npmjs.com/package/aos" target="_blank">AOS documentation</a>
+			<br/>
+			<a href="aos-next/demo/async.html" target="_blank">AOS demo</a>
+		</h1>
+		<div class="box red"></div>
+		<div class="box pink"></div>
+		<div class="box blue"></div>
+		<div class="row">
+			<div class="box red" data-aos="fade-up"></div>
+		</div>
+		<div class="row">
+			<div class="box pink" data-aos="fade-right" data-aos-once="true"></div>
+		</div>
+		<div class="row">
+			<div class="box blue" data-aos="fade-left"></div>
+		</div>
+		<div class="row">
+			<div class="box red"></div>
+		</div>
+	</div>
+</body>
+</html>
